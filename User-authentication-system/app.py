@@ -1,6 +1,6 @@
 from flask import Flask, request,render_template, redirect,session
 from flask_sqlalchemy import SQLAlchemy
-#import bcrypt
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -20,7 +20,7 @@ class User(db.Model):
         self.email = email
     
     def check_password(self,password):
-        return password
+         return password
 with app.app_context():
     db.create_all()
 
