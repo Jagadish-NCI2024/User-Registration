@@ -1,4 +1,4 @@
-from flask import Flask, request,render_template, redirect,session
+from flask import Flask, flash, request,render_template, redirect,session
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -41,8 +41,6 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         return redirect('/login')
-
-
 
     return render_template('register.html')
 
