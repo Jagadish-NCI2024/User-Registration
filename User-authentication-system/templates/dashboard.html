@@ -20,14 +20,17 @@
             <p><b>Email: </b> {{user.email }}</p>
             <a href="/logout" class="btn btn-dark">Logout</a>
         </div>
-        <div class=" row justify-content-center">
-            <div class="col-sm-8">   
-        <h2>Delete Account</h2>
-    <form action="/delete_account" method="post">
-        <p>Are you sure you want to delete your account?</p>
-        <button type="submit">Delete My Account</button>
-      
-    </form>
+        <!-- <div class=" row justify-content-center"> -->
+            <!-- <div class="d-flex align-items-start">...</div> -->
+            <div class="fixed-bottom">...</div>
+            
+        <div class="col-sm-8">   
+            <h2>Delete Account</h2>
+            <!-- <a href="/delete_account" class="btn btn-dark">Delete</a> -->
+            <form action="/delete_account" method="post">
+            <p>Are you sure you want to delete your account?</p>
+            <button type="submit">Delete My Account</button>      
+            </form>
     <!-- {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
           <ul>
