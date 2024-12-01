@@ -1,4 +1,4 @@
-from flask import Flask, flash, request,render_template, redirect,session
+from flask import Flask, flash, request,render_template, redirect,session, make_response, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -51,6 +51,8 @@ def login():
         password = request.form['password']
 
         user = User.query.filter_by(email=email).first()
+        resp = make_response(redirect(url_for('login')))
+        resp.set_cookie('secureCookie', email, secure=True, httponly=True, samesite='Strict', max_age=60*60*24)
         
         if user and user.check_password(password):
             session['email'] = user.email
@@ -89,6 +91,18 @@ def delete_account():
         return redirect('/login')
     
     return redirect('/login')
+@app.route('/post', methods=['GET', 'POST'])
+def post_message():
+    user = request.cookies.get('user')
+    if not user:
+        return redirect(url_for('login'))  # Redirect to login if not authenticated
+
+    if request.method == 'POST':
+        message = request.form.get('message', '')
+        # Reflecting the message directly (vulnerable to XSS)
+        return render_template('dashboard.html', user=user, message=message)
+
+    return render_template('dashboard.html', user=user)
 
 
 if __name__ == '__main__':
