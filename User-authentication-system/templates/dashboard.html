@@ -41,23 +41,8 @@
       {% endif %}
     {% endwith %} -->
     
-    <h2> Review, {{user.name }}!</h2>
-
-    <form action="/post" method="post">
-        <label for="message">Enter a message:</label>
-        <textarea id="message" name="message"></textarea>
-        <br>
-        <button type="submit">Post Message</button>
-    </form>
-
-    {% if message %}
-        <h2>Your Message:</h2>
-
-        <!-- Escaping user input to prevent XSS <script>alert('XSS Attack!');</script> -->
-        <!--<p>{{ message }}</p> -->
-        <p>{{ message|safe }}</p>  <!-- Vulnerable to XSS: The message is reflected without sanitization -->
- 
-    {% endif %}
+   
+    
 
     </div>
   
