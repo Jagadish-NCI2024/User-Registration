@@ -12,12 +12,13 @@ class User(db.Model):
     name = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
- 
+   
 
     def __init__(self,email,password,name):
         self.name = name        
         self.password = password
         self.email = email
+   
     
     def check_password(self,password):
          return password
@@ -36,6 +37,7 @@ def register():
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
+       
 
         new_user = User(name=name,email=email,password=password)
         db.session.add(new_user)
@@ -103,6 +105,7 @@ def post_message():
         return render_template('dashboard.html', user=user, message=message)
 
     return render_template('dashboard.html', user=user)
+    
 
 
 if __name__ == '__main__':
