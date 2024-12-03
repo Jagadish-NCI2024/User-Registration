@@ -41,7 +41,6 @@ def register():
         password = request.form['password']
 
         with get_db() as db:
-            #db.execute('INSERT INTO User (name, email, password) VALUES (?, ?, ?)', (name, email, password))
             db.execute('INSERT INTO User (name, email,password) VALUES ("{}", "{}", "{}")'.format(name, email, password))
 
             db.commit()
